@@ -6,11 +6,12 @@ function Todo({index, text, completed, changeComplete, deleteTodo, update}) {
 
 	const handleUpdate = (evt) => {
 		evt.preventDefault()
-		if (!enableUpdate) {
-			setEnableUpdate(true);
-		} else {
+		if (currentText !== "") {
 			update(currentText)
 			setEnableUpdate(false)
+		} else {
+			setEnableUpdate(false)
+			setCurrentText(text);
 		}
 	}
 

@@ -5,8 +5,11 @@ function Form({submit}) {
 
 	const submitForm = (evt) => {
 		evt.preventDefault();
-		submit(currentTodo);
-		setCurrentTodo("");
+		if (currentTodo !== "") {
+
+			submit(currentTodo);
+			setCurrentTodo("");
+		}
 	}
 
 	return (
