@@ -113,3 +113,13 @@ button:hover {
   cursor: pointer;
   opacity: 0.9;
 }
+
+@media (max-width: 576px) {
+  /* List */
+  .sem-tarefas img {
+    width: 60%;
+  }
+  .sem-tarefas span {
+    max-width: 80%;
+  }
+}
