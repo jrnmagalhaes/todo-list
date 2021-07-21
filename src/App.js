@@ -23,15 +23,15 @@ function App() {
   }
 
   const completeTodo = (index) => {
-    const aux = [...todoList];
-    aux[index].completed = !aux[index].completed
-    setTodoList(aux);
+    setTodoList(todoList.map((todo, todoIndex) =>
+      index === todoIndex ? {...todo, completed: !todo.completed} : todo
+    ))
   }
 
   const updateTodo = (value, index) => {
-    const aux = [...todoList];
-    aux[index].text = value
-    setTodoList(aux);
+    setTodoList(todoList.map((todo, todoIndex) =>
+      index === todoIndex ? {...todo, text: value} : todo
+    ))
   }
 
   const deleteTodoItem = (index) => {
@@ -49,7 +49,7 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div>
       <Form submit={addToList}/>
       <TodoList updateTodo={updateTodo} deleteTodoItem={deleteTodoItem} todos={returnTodoList()} completeTodo={completeTodo} />
       <Actions setFilter={setFilterType} cleanCompleted={cleanCompleted}/>
