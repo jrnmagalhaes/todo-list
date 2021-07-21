@@ -1,38 +1,115 @@
-.App {
-  text-align: center;
+.app {
+  padding-top: 20px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* new todo */
+.new-todo {
+  width: 100%;
+  display: flex;
+  margin-bottom: 20px;
+}
+.new-todo input {
+  flex: 1;
+  border: 1px solid #cabaab;
+  padding: 10px 20px;
+  border-radius: 10px;
+  color: #202731;
+}
+.new-todo button {
+  margin-left: 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* List */
+.list-container div {
+  width: 100%;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.sem-tarefas {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+.sem-tarefas img {
+  width: 30%;
+}
+.sem-tarefas span {
+  max-width: 40%;
+  text-align: center;
+}
+
+/* actions */
+.actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.actions label {
+  color: #202731;
+}
+.actions select {
+  border: none;
+}
+
+/* todo */
+.input-tarefa {
+  border: none;
+  padding-left: 0;
+}
+.texto-tarefa,
+.input-tarefa {
+  border-bottom: 1px solid #faf566;
+  padding-bottom: 3px;
+  font-size: 1em;
+}
+.texto-tarefa:hover {
+  cursor: pointer;
+  border-color: #9acfdd;
+}
+
+/* inputs */
+input:focus {
+  outline: none;
+}
+
+/* table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+table thead th {
+  text-align: left;
+}
+table tbody td:nth-of-type(1) {
+  width: 50%;
+}
+table tbody td:nth-of-type(3) {
+  text-align: right;
+}
+table tbody tr {
+  border-bottom: 1px solid #ccc;
+}
+
+/* button */
+button {
+  padding: 10px 20px;
+  background-color: #202731;
   color: white;
+  border-radius: 10px;
+  border: none;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.8em;
 }
-
-.App-link {
-  color: #61dafb;
+button.warning {
+  background-color: #faf566;
+  color: #202731;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+button.icon {
+  background-color: transparent;
+  color: #d90b1c;
+  font-size: 1.2em;
+}
+button:hover {
+  cursor: pointer;
+  opacity: 0.9;
 }

@@ -9,7 +9,7 @@ import { Form, TodoList, Actions } from './components';
 
 function App() {
   const [todoList, setTodoList] = useState([])
-  const [filterType, setFilterType] = useState(null)
+  const [filterType, setFilterType] = useState("all")
 
   const addToList = (item) => {
     const aux = [...todoList,
@@ -39,7 +39,7 @@ function App() {
   }
 
   const returnTodoList = () => {
-    if (filterType !== null)
+    if (filterType !== "all")
       return todoList.filter(todo => filterType === 'completed' ? todo.completed : !todo.completed)
     return todoList;
   }
@@ -49,10 +49,10 @@ function App() {
   }
 
   return (
-    <div>
+    <div className="container app">
       <Form submit={addToList}/>
-      <TodoList updateTodo={updateTodo} deleteTodoItem={deleteTodoItem} todos={returnTodoList()} completeTodo={completeTodo} />
       <Actions setFilter={setFilterType} cleanCompleted={cleanCompleted}/>
+      <TodoList updateTodo={updateTodo} filtering={filterType !== 'all'} deleteTodoItem={deleteTodoItem} todos={returnTodoList()} completeTodo={completeTodo} />
     </div>
   );
 }

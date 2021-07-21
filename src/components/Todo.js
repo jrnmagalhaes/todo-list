@@ -1,10 +1,11 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
-function Todo({text, completed, changeComplete, deleteTodo, update}) {
+function Todo({index, text, completed, changeComplete, deleteTodo, update}) {
 	const [enableUpdate, setEnableUpdate] = useState(false)
 	const [currentText, setCurrentText] = useState(text)
 
-	const handleUpdate = () => {
+	const handleUpdate = (evt) => {
+		evt.preventDefault()
 		if (!enableUpdate) {
 			setEnableUpdate(true);
 		} else {
@@ -13,17 +14,35 @@ function Todo({text, completed, changeComplete, deleteTodo, update}) {
 		}
 	}
 
+	useEffect(() => {
+		if (enableUpdate) {
+			const input = document.getElementById(`todo-${index}`)
+			input.focus();
+		}
+	}, [enableUpdate])
+
+	const triggerUpdate = () => {
+		setEnableUpdate(true);
+	}
+
 	return (
-		<div>
-			{enableUpdate?
-				<input value={currentText} onChange={(event) => setCurrentText(event.target.value)}/>
-			:
-				<span>{text}</span>
-			}
-			<input type="checkbox" onChange={changeComplete} checked={completed} />
-			<button onClick={deleteTodo}>excluir</button>
-			<button onClick={() => handleUpdate()}>{enableUpdate? "atualizar" : "habilita update"}</button>
-		</div>
+		<tr>
+			<td>
+				{enableUpdate?
+					<form onSubmit={(evt) => {handleUpdate(evt)}}>
+						<input id={`todo-${index}`} className="input-tarefa" value={currentText} onChange={(event) => setCurrentText(event.target.value)}/>
+					</form>
+					:
+					<span className={`texto-tarefa ${completed? "completa" : ""}`} onClick={() => triggerUpdate()}>{text}</span>
+				}
+			</td>
+			<td>
+				<input type="checkbox" onChange={changeComplete} checked={completed} />
+			</td>
+			<td>
+				<button className="icon" onClick={deleteTodo}><i className="fas fa-trash-alt"></i></button>
+			</td>
+		</tr>
 	)
 }
 
